@@ -1,0 +1,9 @@
+.button {
+  width: 110px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.button--mouse-enter {
+  background-color: orange;
+}

@@ -1,0 +1,12 @@
+.button {
+  text-align: center;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  cursor: pointer;
+
+  &.button--disable {
+    cursor: default;
+  }
+}
