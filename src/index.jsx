@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
-import UIModal from './UIModal';
-
+import UIModal from './components/UI/UIModal/UIModal';
 import UIButton from './components/UI/UIButton/UIButton';
 
 const COMPONENT_LIST = {
