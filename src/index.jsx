@@ -132,7 +132,7 @@ class App extends PureComponent {
     const { componentArr } = this.state;
     return (
       <div
-        className="app"
+        className="react-app"
       >
         {componentArr}
       </div>
