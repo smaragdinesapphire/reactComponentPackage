@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "練習打包 React Component 成一個 Librery，用於其他非應用 React 之程式 (EX: 原生 JS)。",
   "scripts": {
-    "createModule": "set NODE_ENV=development"
+    "createModule": "set NODE_ENV=development && webpack"
   },
   "keywords": [
     "react",

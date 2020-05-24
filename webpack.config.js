@@ -7,51 +7,46 @@ const library = 'myModule';
 const libraryTarget = 'var';
 const sourceMap = 'cheap-module-eval-source-map';
 
-module.exports = (env) => {
-  const mode = env.MODE || null;
-  if (mode === 'MODULE') {
-    return {
-      mode: 'development',
-      devtool: sourceMap,
-      entry: ['@babel/polyfill', entryJS],
-      output: {
-        path: outputPath,
-        filename,
-        library,
-        libraryTarget,
+module.exports = {
+  mode: 'development',
+  devtool: sourceMap,
+  entry: ['@babel/polyfill', entryJS],
+  output: {
+    path: outputPath,
+    filename,
+    library,
+    libraryTarget,
+  },
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          // eslint options (if necessary)
+        },
       },
-      module: {
-        rules: [
-          {
-            enforce: 'pre',
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            loader: 'eslint-loader',
-            options: {
-              // eslint options (if necessary)
-            },
-          },
-          {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-            },
-          },
-          {
-            test: /\.(scss|sass)$/,
-            use: ['style-loader', 'css-loader', 'sass-loader'],
-          },
-          {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader'],
-          },
-        ],
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
       },
-      resolve: {
-        extensions: ['.js', '.jsx'],
+      {
+        test: /\.(scss|sass)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-    };
-  }
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
