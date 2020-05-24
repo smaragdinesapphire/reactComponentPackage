@@ -26,29 +26,39 @@ window.onload = function () {
     }
     clickButtonId = myModule.renderComponent(getConfig());
   }
-  createClickButton();
-
   function removeClickButton() {
     myModule.unrenderComponent(clickButtonId);
     clickButtonId = null;
   }
-  var removeButtonId = null;
-  function getRemoveConfig() {
-    return {
-      componentName: 'UIButton',
-      renderNode: app,
-      props: {
-        onClick: function onClick() {
-          if (clickButtonId !== null) {
-            removeClickButton();
-          } else {
-            createClickButton();
+  var MODE_LIST = {
+    ADD: 'Add',
+    REMOVE: 'Remove',
+  };
+  function createEditButton() {
+    var editButtonId = null;
+    var mode = MODE_LIST.ADD;
+    function getRemoveConfig() {
+      return {
+        componentName: 'UIButton',
+        renderNode: app,
+        props: {
+          onClick: function onClick() {
+            if (clickButtonId !== null) {
+              removeClickButton();
+              mode = MODE_LIST.ADD;
+            } else {
+              createClickButton();
+              mode = MODE_LIST.REMOVE;
+            }
+            var newConfig = getRemoveConfig()
+            myModule.modifyComponent(newConfig);
           }
-        }
-      },
-      id: removeButtonId,
-      child: "delete/create",
-    };
+        },
+        id: editButtonId,
+        child: mode,
+      };
+    }
+    editButtonId = myModule.renderComponent(getRemoveConfig());
   }
-  removeButtonId = myModule.renderComponent(getRemoveConfig());
+  createEditButton();
 };
